@@ -1,6 +1,6 @@
 package utils.backupVectors2;
 
-import utils.vectors.*;
+
 
 public class Camera3D {
 	

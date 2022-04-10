@@ -3,7 +3,6 @@ package utils.backupVectors2;
 import java.awt.event.*;
 import utils.clocks.ClockListener;
 import utils.settings.ConstantsManager;
-import utils.vectors.*;
 
 public class PlayerMovement implements KeyListener, ClockListener{
 	private Camera3D camera;
