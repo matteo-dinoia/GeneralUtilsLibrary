@@ -2,15 +2,54 @@ package utils.settings;
 
 public class Constant {
 	
-	public static Constant newConstant(String s) {
-		String command=s.split("#")[0];
+	public static Constant newConstant(String line) {
 		
-		String[] fields =command.split(":");
-		if(fields.length!=3) return null;
+		String[] fields=getField(line);
+		if(fields==null) return null;
+		//if(fields.length!=3)return null;
 		
 		return newConstant(fields[0], fields[1], fields[2]);
 	}
-	public static Constant newConstant(String name, String value, String type) {
+	public static String[] getField(String line) {
+		//Devide "normally illegal text" ->must be odd 
+		//because n of " is even 
+		String[] textAndNot =line.split("\"");
+		if(textAndNot.length%2!=1) return null;
+		
+		//Getting data
+		String ris[]={"","",""};
+		int fieldIndex=0;
+		boolean isCommentedAfter=false;
+		for(int i=0; i<textAndNot.length&&!isCommentedAfter; i++) {
+			if(fieldIndex>=3) {
+				return null;
+			}
+			else if(i%2==0) {
+				//CHECK FOR COMMENT
+				String[] devidedByComment=textAndNot[i].split("#");
+				if(devidedByComment.length>1) {
+					isCommentedAfter=true;
+				}
+				
+				//CHECK FOR SPLIT FIELD
+				String[] differentField=devidedByComment[0].split(":");
+				for(int i2=0; i2<differentField.length; i2++) {
+					ris[fieldIndex]+=differentField[i2].trim();
+					if(i2 != (differentField.length-1)) fieldIndex++;
+				}
+				
+			}
+			else{
+				ris[fieldIndex]+=textAndNot[i];
+			}
+		}
+		
+		
+		//IF right return
+		if((fieldIndex+1) != 3) return null;
+		return ris;
+	}
+ 	public static Constant newConstant(String name, String value, String type) {
 		try {
 			return new Constant(name, value, type);
 		} catch (ConstantNullException e) {}

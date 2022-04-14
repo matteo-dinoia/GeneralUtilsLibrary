@@ -5,12 +5,14 @@ package utils.database;
 import java.io.PrintStream;
 import java.sql.*;
 
+import utils.settings.ConstantsManager;
+
 public class DbUtils {
 	private static final PrintStream ERR = System.err;
 
-	public static final String URL="jdbc:mysql://mysqlserver66.mysql.database.azure.com:3306",
-			USER="matteodinoia",
-			PASSWORD="5Rb!GHz*";
+	public static final String URL=ConstantsManager.getStringValue("UrlDatabase");
+	public static final String USER=ConstantsManager.getStringValue("UserDatabase");
+	public static final String PASSWORD=ConstantsManager.getStringValue("PswDatabase");
 
 	private static Connection con=null;
 	
