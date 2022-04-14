@@ -1,3 +1,4 @@
+package file;
 
 public interface IFileUtil {
 	public String getContenutoFile(String percorco) throws Exception;
