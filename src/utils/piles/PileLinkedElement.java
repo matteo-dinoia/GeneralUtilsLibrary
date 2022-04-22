@@ -1,15 +1,15 @@
 package utils.piles;
 
-public class PileLinkedElement { //ALMOST ABSTRACT
-	public PileLinkedElement previous;
-	public PileLinkedElement next;
+public class PileLinkedElement <E>{ //ALMOST ABSTRACT
+	public PileLinkedElement<E> previous;
+	public PileLinkedElement<E> next;
 	
 
-	PileElement elementInPile;
-	public PileElement getElement() {
+	E elementInPile;
+	public E getElement() {
 		return elementInPile;
 	}
-	public PileLinkedElement(PileElement elementInPile) {
+	public PileLinkedElement(E elementInPile) {
 		this.elementInPile=elementInPile;
 	}
 }

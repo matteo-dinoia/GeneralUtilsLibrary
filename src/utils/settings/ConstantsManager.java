@@ -22,7 +22,20 @@ public class ConstantsManager {
 	private static void readConstantsFromFile() {
 		
 		//OPEN FILE
-		BufferedReader reader = getBufferedReader("Costants.txt");
+		//TODO FIX
+		ClassLoader cl = (ConstantsManager.class).getClassLoader();
+		
+	    InputStream is = cl.getResourceAsStream("../Costants.txt");
+	    if(is==null)return;
+	    BufferedReader reader;
+		try {
+			reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			reader=null;
+		}
+		//BufferedReader reader = getBufferedReader("Costants.txt");
 		if(reader==null) return;
 		
 		//ADD ROW BY ROW

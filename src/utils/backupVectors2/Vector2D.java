@@ -1,8 +1,8 @@
 package utils.backupVectors2;
 
-import utils.piles.PileElement;
 
-public class Vector2D implements PileElement {
+
+public class Vector2D{
 	
 	//COSTRUCTOR --------------------------------------------------------
 	private double x=0, y=0, module=0, angle=0;

@@ -1,8 +1,8 @@
 package utils.piles;
 
-public class Pile  implements PileOnlyReadable{
-	private PileLinkedElement first=null;
-	private PileLinkedElement last=null;
+public class Pile<E>{
+	private PileLinkedElement<E> first=null;
+	private PileLinkedElement<E> last=null;
 	
 	//MANAGMENT FIFO LIFO ---------------------------------------
 	 //First IN first OUT (else Last IN Fist OUT
@@ -16,10 +16,10 @@ public class Pile  implements PileOnlyReadable{
 	}
 	
 	private int size=0;
-	public void push(PileElement coord) {
-		if(coord==null) return;
+	public void push(E element) {
+		if(element==null) return;
 		
-		PileLinkedElement el=new PileLinkedElement(coord);
+		PileLinkedElement<E> el=new PileLinkedElement<>(element);
 		if(this.first==null) {
 			this.first=el;
 			this.last=el;
@@ -33,23 +33,23 @@ public class Pile  implements PileOnlyReadable{
 		this.first=el;
 		this.size++;
 	}
-	public PileElement pop() {
+	public E pop() {
 		if(isFifo) return popLast();
 		else return popFirst();
 	}
-	private PileElement popLast() {
+	private E popLast() {
 		if(this.last==null) return null;
 		
-		PileElement ris=this.last.getElement();
+		E ris=this.last.getElement();
 		this.removeLast();
 		
 		if(this.size>0) this.size--;
 		return ris;
 	}
-	private PileElement popFirst() {
+	private E popFirst() {
 		if(this.first==null) return null;
 		
-		PileElement ris=this.first.getElement();
+		E ris=this.first.getElement();
 		this.removeFirst();
 		
 		if(this.size>0) this.size--;
@@ -57,24 +57,9 @@ public class Pile  implements PileOnlyReadable{
 	}
 	
 	
-	//PILES ONLY READABLE ---------------------------------------
-	private PileLinkedElement elementReadablePile=null;
-	@Override
-	public void restartPileOnlyReadable() {
-		elementReadablePile=first;
-	}
-	@Override
-	public PileElement next() {
-		if(elementReadablePile==null) return null;
-		PileElement ris=elementReadablePile.getElement();
-		
-		elementReadablePile=elementReadablePile.next;
-		return ris;
-	}
-	
 	
 	//UTILS  ----------------------------------------------------
-	public PileElement getFirst() {
+	public E getFirst() {
 		return first.getElement();
 	}
 	public void removeLast() {

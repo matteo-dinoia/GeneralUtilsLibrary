@@ -10,6 +10,8 @@ import utils.settings.ConstantsManager;
 public class DbUtils {
 	private static final PrintStream ERR = System.err;
 
+	
+	//TODO ADD PERSONALIZATION OF URL + GENERAL (MAYBE)
 	public static final String URL=ConstantsManager.getStringValue("UrlDatabase");
 	public static final String USER=ConstantsManager.getStringValue("UserDatabase");
 	public static final String PASSWORD=ConstantsManager.getStringValue("PswDatabase");
@@ -29,9 +31,7 @@ public class DbUtils {
 		if(con==null){
 			try {
 				Class.forName("com.mysql.cj.jdbc.Driver");
-				//Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 				
-				//con=DriverManager.getConnection(URL2);
 				con=DriverManager.getConnection(URL, USER, PASSWORD);
 			} 
 			catch (SQLException e) {
