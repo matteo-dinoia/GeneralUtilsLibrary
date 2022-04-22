@@ -1,3 +1,0 @@
-UrlDatabase  : "jdbc:mysql://mysqlserver66.mysql.database.azure.com:3306"     :String
-UserDatabase : matteodinoia                                                    :String
-PswDatabase  : 5Rb!GHz*                                                        :String
