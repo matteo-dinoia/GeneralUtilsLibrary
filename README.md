@@ -1,4 +1,4 @@
-# 0-ProgramParts
+# General Utils Library
 Some library written in Java for other programs.
 
 
